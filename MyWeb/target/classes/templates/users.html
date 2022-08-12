@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-center">
+  <h1>Manage Users</h1>
+</div>
+<div>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+  <th:block th:each="user : ${listUser}">
+    <td>[[${user.id}]]</td>
+    <td>[[${user.email}]]</td>
+    <td>[[${user.firstName}]]</td>
+    <td>[[${user.lastName}]]</td>
+
+  </th:block>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
