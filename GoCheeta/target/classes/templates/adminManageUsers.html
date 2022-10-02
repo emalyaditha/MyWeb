@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">GoCheeta Admin Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/adminAddUsers">Add Users</a>
+          <a class="dropdown-item" href="/adminAddVehicles">Add Vehicles</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/adminManageUsers">Manage Users</a>
+          <a class="dropdown-item" href="/adminManageVehicle">Manage Vehicles</a>
+          <a class="dropdown-item" href="/adminManageBooking">Manage Bookings</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Log Out</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<div class="container-fluid text-center">
+
+  <h1>Manage Users</h1>
+
+</div>
+<div th:if="${message}" class="alert alert-success text-center">
+  [[${message}]]
+</div>
+
+<div>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Branch</th>
+      <th>Car</th>
+      <th>Phone Number</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="users : ${listUser}">
+      <tr>
+        <td>[[${users.id}]]</td>
+        <td>[[${users.email}]]</td>
+        <td>[[${users.firstName}]]</td>
+        <td>[[${users.lastName}]]</td>
+        <td>[[${users.branch}]]</td>
+        <td>[[${users.car}]]</td>
+        <td>[[${users.phoneNumber}]]</td>
+        <td>[[${users.role}]]</td>
+        <td>
+          <a class="h4 mr-3" th:href="@{'/User/edit/' + ${users.id}}">Edit</a>
+          <a class="h4" th:href="@{'/User/delete/' + ${users.id}}">Delete</a>
+        </td>
+      </tr>
+    </th:block>
+    </tbody>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">GoCheeta</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/driverViewBooking">Bookings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/driverViewHires">My Hire</a>
+      </li>
+    </ul>
+  </div>
+  <li class="nav-item">
+    <a class="nav-link" href="/logout">Log Out</a>
+  </li>
+</nav>
+<div th:if="${message}" class="alert alert-success text-center">
+  [[${message}]]
+</div>
+
+<div class="text-center"> <h2>[[${pageTitle}]]</h2></div>
+
+<form th:action="@{/driverAcceptBooking}"  method="post" th:object="${booking}" style="max-width: 500px; margin: 0 auto;">
+  <input type="hidden" th:field="*{id}" class="form-control" id="id">
+  <div class="form-group">
+    <label>Customer Email :</label>
+    <input type="hidden"    th:field="*{customer}"class="form-control" >
+    <label th:text="*{customer}"></label>
+  </div>
+  <div class="form-group">
+    <label>Destination :</label>
+    <input type="hidden" th:field="*{destination}" class="form-control" id="exampleInputDestination"  placeholder="Enter Destination" >
+    <label th:text="*{destination}"></label>
+  </div>
+
+  <div class="form-group">
+    <label>Starting Location :</label>
+    <input type="hidden" th:field="*{startingLocation}" class="form-control" id="exampleInputStartingLocation"  placeholder="Enter Starting Location" >
+    <label th:text="*{startingLocation}"></label>
+  </div>
+    <div class="form-group">
+      <label>Enter Branch :</label>
+      <select hidden class="form-control" th:field="*{vehicleBranch}" id="exampleInputVehicleBranch" placeholder="Enter Branch Location">
+        <option value="Galle">Galle</option>
+        <option value="Kandy">Kandy</option>
+        <option value="Nugegoda">Nugegoda</option>
+        <option value="Gampaha">Gampaha</option>
+        <option value="Kurunegala">Kurunegala</option>
+        <option value="Jaffna">Jaffna</option>
+      </select>
+      <label th:text="*{vehicleBranch}"></label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label >Vehicle Name :</label>
+    <input type="hidden" th:field="*{vehicleName}" class="form-control" id="exampleInputVehicleName"  placeholder="Enter Vehicle Name">
+    <label th:text="*{vehicleName}"></label>
+  </div>
+  <div class="form-group">
+    <label>Driver</label>
+    <input type="email" th:value="${#authentication.name}" th:name="*{driver}"  id="email" class="form-control" disabled>
+    <label>Confirm Email Address</label>
+    <input type="email"  th:field="*{driver}"  id="emailCheck"  class="form-control" required>
+  </div>
+  <button type="submit" id="btnSubmit" class="btn btn-primary">Accept</button>
+</form>
+<script type="text/javascript">
+  $(function () {
+    $("#btnSubmit").click(function () {
+      var e1 = $("#email").val();
+      var e2 = $("#emailCheck").val();
+      if (e1 != e2) {
+        alert("Email do not match.");
+        return false;
+      }
+      return true;
+    });
+  });
+</script>
+</body>
+
+
+</html>

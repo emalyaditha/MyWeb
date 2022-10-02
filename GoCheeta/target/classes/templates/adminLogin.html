@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">GoCheeta</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/adminLogin">Admin Login</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/customerRegister">Register</a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<br>
+<br>
+<!--<h2>${errorMsg}</h2>-->
+<div th:if="${message}" class="alert alert-danger text-center">
+  [[${message}]]
+</div>
+<form method="post" style="max-width: 500px; margin: 0 auto;">
+  <div class="container-fluid text-center">
+    <h1>Admin</h1>
+    <h1>Login Page</h1>
+
+    <br>
+  </div>
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input type="email" name="email" id="form2Example1" class="form-control" required />
+    <label class="form-label" for="form2Example1">Email address</label>
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" name="password" id="form2Example2" class="form-control" required />
+    <label class="form-label" for="form2Example2">Password</label>
+  </div>
+
+  <!-- 2 column grid layout for inline styling -->
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+      <!-- Checkbox -->
+      <div class="form-check">
+        <input class="form-check-input " type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label text-center" for="form2Example31"> Remember me </label>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Submit button -->
+  <div class="col text-center">
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+  </div>
+
+</form>
+</body>
+</html>
